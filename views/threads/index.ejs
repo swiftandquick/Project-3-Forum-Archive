@@ -1,0 +1,37 @@
+<!-- boilerplate.ejs set up the general layout for this ejs file. -->
+<% layout('layouts/boilerplate')%>
+<h1 class="text-center">Welcome to Coding Gurus!</h1>
+<!-- Click on the link to create a new thread.  -->
+<ul>
+  <!-- Display all threads as a link, the link leads to the page where it shows the thread.  
+  Display thread title up to 30 characters, and display thread content up to 100 characters.  -->
+  <% for (let thread of threads) {%>
+  <div class="card mb-3">
+    <div class="row">
+      <div class="col-mg-8">
+        <div class="card-body">
+          <h5 class="card-title">
+            <% if (thread.title.length < 30) { %> <%= thread.title %> <% } else
+            { %> <%= thread.title.substring(0, 30) + "..." %> <% } %>
+          </h5>
+          <p class="card-text">
+            <% if (thread.content.length < 100) { %> <%= thread.content %> <% }
+            else { %> <%= thread.content.substring(0, 100) + "..." %> <% } %>
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Posted on: <%=thread.postTime%></small>
+          </p>
+          <p class="card-text">
+            <small class="text-muted"
+              >Last update on: <%=thread.lastThreadUpdate%></small
+            >
+          </p>
+          <a class="btn btn-primary" href="/threads/<%=thread._id%>"
+            >View Thread</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+  <% } %>
+</ul>

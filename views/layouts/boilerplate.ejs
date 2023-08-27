@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coding Gurus</title>
+    <link href="/stylesheets/bootstrap/bootstrap.css" rel="stylesheet" />
+  </head>
+  <body class="d-flex flex-column vh-100">
+    <!-- Display the navbar in boilerplate.ejs.  -->
+    <%- include('../partials/navbar') %>
+    <!-- The line below contains the content of each .ejs layout files.  -->
+    <main class="container mt-5"><%- body %></main>
+    <!-- Display the footer in boilerplate.ejs.  -->
+    <%- include('../partials/footer') %>
+    <script src="/stylesheets/bootstrap/bootstrap1.js"></script>
+    <script src="/stylesheets/bootstrap/bootstrap2.js"></script>
+    <script src="/stylesheets/bootstrap/bootstrap3.js"></script>
+  </body>
+</html>

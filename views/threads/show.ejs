@@ -1,0 +1,31 @@
+<!-- boilerplate.ejs set up the general layout for this ejs file. -->
+<% layout('layouts/boilerplate')%>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <div class="card-body">
+      <h5 class="card-title"><%= thread.title %></h5>
+      <p class="card-text"><%= thread.content %></p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Post On: <%= thread.postTime %></li>
+      <li class="list-group-item">
+        Last edited on: <%= thread.lastEditTime %>
+      </li>
+    </ul>
+    <div class="card-body">
+      <!-- Go to the edit page.  -->
+      <a class="card-link btn btn-warning" href="/threads/<%=thread._id%>/edit"
+        >Edit</a
+      >
+      <!-- The form goes submit a DELETE requests on localhost:3000/threads/:id, which overrides POST request.  -->
+      <form
+        class="d-inline"
+        action="/threads/<%=thread._id%>?_method=DELETE"
+        method="POST"
+      >
+        <button class="btn btn-danger">Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
