@@ -98,6 +98,7 @@ app.put('/threads/:id', async(req, res) => {
     const { id } = req.params;
     const thread = await Thread.findByIdAndUpdate(id, {...req.body.thread});
     thread.lastEditTime = new Date();
+    await thread.save()
     res.redirect(`/threads/${thread._id}`);
 });
 

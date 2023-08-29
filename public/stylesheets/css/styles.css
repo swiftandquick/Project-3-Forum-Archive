@@ -1,0 +1,60 @@
+:root {
+    --white: rgba(250, 250, 250, 1)
+}
+
+.welcome-title {
+    text-align: center;
+}
+
+.to-right {
+    justify-content: end;
+}
+
+.text-white {
+    color: var(--white); 
+}
+
+.maxwidth {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.thread-link {
+    text-decoration: none;
+}
+
+.thread-link:link {
+    color: black;
+}
+
+.thread-footer {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 1.75em;
+}
+
+.thread-footer span {
+    font-size: 0.65rem;
+}
+
+.icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+}
+
+.thread-svg {
+    position: absolute;
+ 
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+
+
+/* @media (min-width: 900) {
+    .when-large {
+        justify-content: space-between;
+    }
+} */

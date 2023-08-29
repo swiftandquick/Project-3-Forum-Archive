@@ -1,37 +1,57 @@
 <!-- boilerplate.ejs set up the general layout for this ejs file. -->
 <% layout('layouts/boilerplate')%>
-<h1 class="text-center">Welcome to Coding Gurus!</h1>
-<!-- Click on the link to create a new thread.  -->
-<ul>
-  <!-- Display all threads as a link, the link leads to the page where it shows the thread.  
+  <h1 class="mb-5 text-center">Welcome to Coding Gurus!</h1>
+  <!-- Click on the link to create a new thread.  -->
+  <ul class="p-0">
+    <!-- Display all threads as a link, the link leads to the page where it shows the thread.  
   Display thread title up to 30 characters, and display thread content up to 100 characters.  -->
-  <% for (let thread of threads) {%>
-  <div class="card mb-3">
-    <div class="row">
-      <div class="col-mg-8">
-        <div class="card-body">
-          <h5 class="card-title">
-            <% if (thread.title.length < 30) { %> <%= thread.title %> <% } else
-            { %> <%= thread.title.substring(0, 30) + "..." %> <% } %>
-          </h5>
-          <p class="card-text">
-            <% if (thread.content.length < 100) { %> <%= thread.content %> <% }
-            else { %> <%= thread.content.substring(0, 100) + "..." %> <% } %>
-          </p>
-          <p class="card-text">
-            <small class="text-muted">Posted on: <%=thread.postTime%></small>
-          </p>
-          <p class="card-text">
-            <small class="text-muted"
-              >Last update on: <%=thread.lastThreadUpdate%></small
-            >
-          </p>
-          <a class="btn btn-primary" href="/threads/<%=thread._id%>"
-            >View Thread</a
-          >
+    <% for (let thread of threads) {%>
+      <div class="card mb-3 p-4 maxwidth">
+        <div class="row">
+          <div class="col-mg-8">
+            <figure class="card-body p-0">
+
+              <a class="thread-link" href="/threads/<%=thread._id%>">
+                <h3 class="card-title">
+                  <% if (thread.title.length < 30) { %>
+                    <%= thread.title %>
+                      <% } else { %>
+                        <%= thread.title.substring(0, 30) + "..." %>
+                          <% } %>
+                </h3>
+              </a>
+              <p class="card-text">
+                <% if (thread.content.length < 100) { %>
+                  <%= thread.content %>
+                    <% } else { %>
+                      <%= thread.content.substring(0, 100) + "..." %>
+                        <% } %>
+              </p>
+
+              <div class="thread-footer">
+                <i class="icon"><svg class="thread-svg" viewBox="1.5rem 1.5rem 1.5rem 1.5rem" xmlns="http://www.w3.org/2000/svg">
+                  <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.25 9.75c3 3.5 4.75 4.5 4.75 4.5s1.75-1 4.75-4.5s1-7-1.5-7s-3.25 3-3.25 3s-.75-3-3.25-3s-4.5 3.5-1.5 7z"/>
+              </svg></i>
+                <span>Updated: <%=thread.lastThreadUpdate.toLocaleString().substring(0, 100) %>
+                    </span>
+              </div>
+            </figure>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
-  <% } %>
-</ul>
+      <% } %>
+        <!-- Pagination -->
+        <nav class="my-5" aria-label="Page navigation example">
+          <ul class="pagination justify-content-center">
+            <li class="page-item disabled">
+              <a class="page-link text-dark" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+            </li>
+            <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
+            <li class="page-item"><a class="page-link text-dark" href="#">2</a></li>
+            <li class="page-item"><a class="page-link text-dark" href="#">3</a></li>
+            <li class="page-item">
+              <a class="page-link text-dark" href="#">Next</a>
+            </li>
+          </ul>
+        </nav>
+  </ul>
