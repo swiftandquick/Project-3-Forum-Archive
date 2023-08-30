@@ -27,5 +27,54 @@
         <button class="btn btn-danger">Delete</button>
       </form>
     </div>
+    <hr />
+    <!-- The form goes submit a POST requests on localhost:3000/threads/:id/replies, which overrides POST request.  -->
+    <form
+      class="mb-3 validated-form"
+      action="/threads/<%=thread._id%>/replies"
+      method="POST"
+      novalidate
+    >
+      <div class="mb-3">
+        <label class="form-label" for="replyContent">Leave a reply:</label>
+        <textarea
+          class="form-control"
+          name="reply[replyContent]"
+          id="replyContent"
+          rows="5"
+          cols="50"
+          required
+        ></textarea>
+        <div class="valid-feedback">Looks good!</div>
+      </div>
+      <button class="btn btn-success">Submit</button>
+    </form>
+    <!-- Display the replies.  -->
+    <% for (let reply of thread.replies) { %>
+    <div class="card mb-3">
+      <div class="card-body">
+        <p class="card-text"><%= reply.replyContent %></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Post On: <%= reply.replyPostTime %></li>
+        <li class="list-group-item">
+          Last edited on: <%= reply.replyLastEditTime %>
+        </li>
+      </ul>
+      <div class="card-body"> 
+        <!-- Create a form that links to localhost:3000/threads/:id/replies/:replyId/edit.  -->
+        <a class="card-link btn btn-sm btn-warning" 
+          href="/threads/<%=thread._id%>/replies/<%=reply._id%>/edit">Edit</a>
+        <!-- Create a form to delete to reply for each reply.  
+        When the form is submitted, send a delete request to localhost:3000/threads/:id/replies/:replyId.  -->
+        <form
+          action="/threads/<%=thread._id%>/replies/<%=reply._id%>?_method=DELETE" method="POST""
+          method="POST" class="d-inline"
+        >
+          <button class="btn btn-sm btn-danger">Delete</button>
+        </form>
+      </div>
+    </div>
+    <% } %>
   </div>
 </div>
