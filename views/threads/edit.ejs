@@ -1,11 +1,16 @@
 <!-- boilerplate.ejs set up the general layout for this ejs file. -->
 <% layout('layouts/boilerplate')%>
 <!-- The form goes submit a PUT requests on localhost:3000/threads/:id, which overrides POST request.  
-    The form's inputs have values equal to thread object's currently title and content values.  -->
+    The form's inputs have values equal to thread object's current title and content values.  -->
 <div class="row">
   <h1 class="text-center">Edit Thread</h1>
   <div class="col-6 offset-3">
-    <form action="/threads/<%=thread._id%>?_method=PUT" method="POST">
+    <form
+      action="/threads/<%=thread._id%>?_method=PUT"
+      method="POST"
+      novalidate
+      class="validated-form"
+    >
       <div>
         <div class="mb-3">
           <label class="form-label" for="title">Title</label>
@@ -15,7 +20,9 @@
             id="title"
             name="thread[title]"
             value="<%=thread.title%>"
+            required
           />
+          <div class="valid-feedback">Looks good!</div>
         </div>
         <div class="mb-3">
           <label class="form-label" for="content">Content</label>
@@ -25,9 +32,11 @@
             cols="50"
             id="content"
             name="thread[content]"
+            required
           >
 <%=thread.content%></textarea
           >
+          <div class="valid-feedback">Looks good!</div>
         </div>
         <div class="mb-3">
           <button class="btn btn-success">Update Thread</button>
